@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-size: 2rem;;
+        }
+        h2 {
+            background-color: #fff000;
+        }
+        .hani {
+            display: inline-block;
+            list-style: none;
+        }
+        .hani img {
+            width: 10rem;
+        }
+        .google-link {
+            color: red;
+        }
+        .pink_hani {
+            background-color: lightpink;
+        }
+
+    </style>
+    <script>
+        // body가 다 읽힐때 까지 기다리는 코드를 넣어줘야한다.
+        // body 아래에 script를 써주면 hmtl을 먼저 읽게 되어 빠르게 느껴지는 효과가 있다.
+        // window.onload = function () {
+        //     var title = document.getElementById('main-title');
+        //     console.log(title);
+        // };
+
+        // window.addEventListener('load', function () {
+        //     var title = document.getElementById('main-title');
+        //     console.log("addEventListener, " ,title);
+        // });
+        
+
+        // window.addEventListener('DOMContentLoaded', function () {
+        //     var title = document.getElementById('main-title');
+        //     console.log("DOMContentLoaded, " ,title);
+        // });
+
+        // Jquery ? 
+        // $(document).ready(function () {
+        // });
+        // $(function () {
+        // });
+
+    </script>
+
+</head>
+
+
+<body>
+    <div>
+        <h2 id="main-title">
+            <span>hello</span>
+            DOM (Document Object Model)
+        </h2>
+        <article>
+            <header class="main-header">article header</header>
+            <section> 
+                <header>section1 header</header>
+                section1
+            </section>
+            <section> 
+                <header>section2 header</header>
+                section2
+            </section>        
+        </header>
+
+        <ul class="newjeans">
+            <li class="hani">
+                <img src="imgs/1.png">
+                <a class="google-link" href="www.google.com">google</a>
+            </li>
+            <li class="hani"><img src="imgs/2.png"></li>
+            <li class="hani"><img src="imgs/3.png"></li>
+        </ul>
+
+    </div> 
+
+    <script>
+        // var title = document.getElementById('main-title');
+        // var titleSpan = title.getElementsByTagName('span');
+        // console.log("body , " ,title);
+        // console.log("titleSpan , " ,titleSpan[0]);
+        
+        var mainTitle = document.querySelector('#main-title span');
+        var haniImg = document.querySelector('.hani');
+        var haniImgAll = document.querySelectorAll('.hani');
+        console.log(haniImgAll[1]);
+        
+        for (var i = 0 ; i < haniImgAll.length; i++){
+            haniImgAll[i].style.border = '1px solid red';
+        }
+
+        var link = document.querySelector('.hani a');
+        console.log(link.className);
+        //link.className = 'google-link newjeans';
+        link.classList.add('pink_hani');
+
+        console.log(link.getAttribute('href'));
+        link.setAttribute('href', 'https://google.com');
+        console.log(link.getAttribute('href'));
+        
+        setTimeout(function () {
+            link.classList.remove('google-link');
+        }, 2000);
+        
+        console.log(link.classList.contains('pink_hani'));
+
+        var newjeansElem = document.querySelector('.newjeans');
+        console.log(newjeansElem);
+        var listElem =document.createElement('li');
+        listElem.innerHTML='<span>뉴진스하니</span>';
+        console.log(listElem); 
+        newjeansElem.appendChild(listElem);
+
+
+    </script>
+
+</body>
+</html>

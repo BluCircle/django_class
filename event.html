@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-size: 2rem;;
+        }
+        .menu {
+            display: flex;
+        }
+        .menu-link {
+            margin: 5px;
+            padding: 10px 20px;
+            background: dodgerblue;
+            color: #fff;
+            text-decoration: none;
+            list-style: none;
+        }
+        .menu-active {
+            background: orange;
+        }
+        .btn {
+            font-size: 2rem;
+        }
+    </style>
+    <script>
+    </script>
+</head>
+
+
+<body>
+    <div>
+        <h2 id="main-title">
+            EVENT
+        </h2>
+
+        <nav class="menu">
+            <a href="#" class="menu-link" data-menu="1">menu1</a>
+            <a href="#" class="menu-link" data-menu="2">menu2</a>
+            <a href="#" class="menu-link" data-menu="3">menu3</a>
+        </nav>
+
+        <button class="btn">Click </button>
+
+    </div> 
+
+    <script>
+        var mainTitle = document.querySelector('#main-title');
+        var btn = document.querySelector('.btn');
+        var menu = document.querySelector('.menu');
+        var menuLinks = menu.getElementsByTagName('a');
+        console.log(menuLinks);
+
+        for (var i = 0; i < menuLinks.length ; i++){
+            menuLinks[i].addEventListener('click', clickMenuHandler);
+        }
+        // menuLinks[0].addEventListener('click', clickMenuHandler);
+        // menuLinks[1].addEventListener('click', clickMenuHandler);
+        // menuLinks[2].addEventListener('click', clickMenuHandler);
+
+        function btnClickHandler() {
+            if (mainTitle.style.background !='dodgerblue')
+            mainTitle.style.background = 'dodgerblue';
+            else
+            mainTitle.style.background = '#fff000';
+        };
+
+        function clickMenuHandler() {
+            var clicked = this.getAttribute('data-menu');
+            console.log(clicked);
+            for(var i = 0 ; i < menuLinks.length ; i++)
+            {
+                if (i == (clicked -1) )
+                    menuLinks[i].classList.add('menu-active');
+                else
+                    menuLinks[i].classList.remove('menu-active');
+            }
+
+        };
+
+        btn.addEventListener('click', btnClickHandler);
+        //btn.onclick = btnClickHandler;  // 이 방법은 함수 여러개를 넣는게 어렵다.
+    </script>
+
+</body>
+</html>
