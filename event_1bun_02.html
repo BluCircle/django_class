@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-size: 2rem;;
+        }
+        .menu {
+            display: flex;
+        }
+        .menu-link {
+            margin: 5px;
+            padding: 10px 20px;
+            background: dodgerblue;
+            color: #fff;
+            text-decoration: none;
+            list-style: none;
+        }
+        .menu-active {
+            background: orange;
+        }
+        .btn {
+            font-size: 2rem;
+        }
+        h2 {
+            background-color: yellow;
+        }
+    </style>
+    <script>
+    </script>
+</head>
+
+
+<body>
+    <div>
+        <h2 id="main-title">
+            EVENT
+        </h2>
+
+        <nav class="menu">
+            <a href="#" class="menu-link" data-menu="1">menu1</a>
+            <a href="#" class="menu-link" data-menu="2">menu2</a>
+            <a href="#" class="menu-link" data-menu="3">menu3</a>
+        </nav>
+
+
+    </div> 
+
+    <script>
+    var currentMenu;
+    var menu = document.querySelector('.menu');
+    
+
+    function deactivate () {
+        currentMenu.classList.remove('menu-active');
+    }
+
+    function activate(elem) {
+        console.log(elem.classList.contains('menu-active'));
+        if (elem.classList.contains('menu-active'))
+            console.log('menu-active 유');
+        else
+            console.log('menu-active 무');
+        elem.classList.add('menu-active');
+        currentMenu = elem;
+        console.log(elem);
+        console.log(elem.classList.contains('menu-active'));
+    }
+
+    
+    function clickHandler(e) {
+        // if (currentMenu) {
+        //     currentMenu.classList.remove('menu-active');
+        // }
+
+        // if (currentMenu == e.target){
+        //     e.target.classList.remove('menu-active');
+        // }
+        // else{
+        //     e.target.classList.add('menu-active');
+        // }
+        // currentMenu = e.target;
+        // console.log(e.currentTarget); // currentTarget은 this 와 같은 곳을 가리킨다.
+        //console.log(e.target);
+
+        if (currentMenu) {
+            deactivate();
+        }
+        activate(e.target);
+        
+    }
+    // for문이 없어도 잘 동작하게 된다. 
+    // 이벤트 위임은 addEventListener를 한번만 써도 되어서 성능에 도움이 됨
+    // SNS은 무한스크롤로 포스트를 계속 불러오는데, 
+    menu.addEventListener('click', clickHandler);
+
+    //JQuery 에서도 이벤트 위임을 사용할 수 있다.
+    // $('.menu').on('click', '.menu-link', function() {
+    // $(this) //this 가 .menu-link를 가리킨다. 
+    // });
+
+
+    </script>
+
+</body>
+</html>

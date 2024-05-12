@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-size: 2rem;;
+        }
+        .menu {
+            display: flex;
+        }
+        .menu-link {
+            margin: 5px;
+            padding: 10px 20px;
+            background: dodgerblue;
+            color: #fff;
+            text-decoration: none;
+            list-style: none;
+        }
+        .menu-active {
+            background: orange;
+        }
+        .btn {
+            font-size: 2rem;
+        }
+        h2 {
+            background-color: yellow;
+        }
+    </style>
+    <script>
+    </script>
+</head>
+
+
+<body>
+    <div>
+        <h2 id="main-title">
+            EVENT
+        </h2>
+
+        <nav class="menu">
+            <a href="#" class="menu-link" data-menu="1">menu1</a>
+            <a href="#" class="menu-link" data-menu="2">menu2</a>
+            <a href="#" class="menu-link" data-menu="3">menu3</a>
+        </nav>
+
+
+    </div> 
+
+    <script>
+        var currentMenu;
+        var menuLinks = document.querySelectorAll('.menu-link');
+
+        function clickMenuHandler() {
+            // var activeMenu = document.querySelector('.menu-active');
+            // if (activeMenu) {
+            //     activeMenu.classList.remove('menu-active');
+            // }
+            
+            if (currentMenu){
+                currentMenu.classList.remove('menu-active');
+            }
+            if (currentMenu == this){
+                this.classList.remove('menu-active');
+            }
+            else{
+                this.classList.add('menu-active');
+            }
+            currentMenu = this;
+        };
+
+        // 메뉴가 많아지면 비효율적인 코드
+        // addEventListener 이게 많으면 성능에 안좋다. 줄이는게 좋음.
+        // 이벤트 위임 개념이 필요하다. 이벤트 처리를 대신 시켜주는 
+        for (var i = 0 ; i < menuLinks.length ; i++){
+            menuLinks[i].addEventListener('click', clickMenuHandler);
+        }
+
+        
+
+
+    </script>
+
+</body>
+</html>
